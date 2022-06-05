@@ -47,9 +47,9 @@ const LoginPage = () => {
   const hasLoggedOn = useCallback(() => (
     <>
       <h1>Bem vindo, {formState.user}!</h1>
-      <span>A aplicação completa com CSS e testes esta no meu
+      <span>A aplicação esta no meu
         {' '} <a href="https://github.com/blmarquess/simple-page-login">
-          github</a>
+          Github</a>
       </span>
     </>
   ), [formState.user]);

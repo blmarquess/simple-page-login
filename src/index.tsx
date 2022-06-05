@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
+export declare type Navigator = Omit<History, "action" | "location" | "back" | "forward" | "listen" | "block">;
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
