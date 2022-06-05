@@ -5,7 +5,7 @@ import renderWithRouter from './testes/utils/renderByPath';
 import userEvent from '@testing-library/user-event';
 
 const EMAIL_CORRECT = 'user@mail.com';
-const PASSWORD_CORRECT = '12345678';
+const PASSWORD_CORRECT = '123456asdf';
 
 const EMAIL_INCORRECT = 'a@com';
 const PASSWORD_INCORRECT = '1234567';
@@ -39,8 +39,8 @@ describe('Testes de validação de regras de login e router', () => {
     const inputEMail = screen.getByPlaceholderText(/email/i);
     const inputPassword = screen.getByPlaceholderText(/senha/i);
     const button = screen.getByText(/entrar/i);
-    fireEvent.change(inputEMail, { target: { value: EMAIL_INCORRECT } });
-    fireEvent.change(inputPassword, { target: { value: PASSWORD_INCORRECT } });
+    userEvent.type(inputEMail, EMAIL_INCORRECT);
+    userEvent.type(inputPassword, PASSWORD_INCORRECT);
     expect(button).toBeDisabled();
   });
   test('Verificar se o botão de entrar continua desabilitado se preencher o campo e-mail de forma errada', () => {
@@ -48,8 +48,8 @@ describe('Testes de validação de regras de login e router', () => {
     const inputEMail = screen.getByPlaceholderText(/email/i);
     const inputPassword = screen.getByPlaceholderText(/senha/i);
     const button = screen.getByText(/entrar/i);
-    fireEvent.change(inputEMail, { target: { value: EMAIL_INCORRECT } });
-    fireEvent.change(inputPassword, { target: { value: PASSWORD_CORRECT } });
+    userEvent.type(inputEMail, { target: { value: EMAIL_INCORRECT } });
+    userEvent.type(inputPassword, PASSWORD_CORRECT);
     expect(button).toBeDisabled();
   });
   test('Verificar se o botão de entrar continua desabilitado se preencher o campo password de forma errada', () => {
@@ -57,17 +57,17 @@ describe('Testes de validação de regras de login e router', () => {
     const inputEMail = screen.getByPlaceholderText(/email/i);
     const inputPassword = screen.getByPlaceholderText(/senha/i);
     const button = screen.getByText(/entrar/i);
-    fireEvent.change(inputEMail, { target: { value: EMAIL_CORRECT } });
-    fireEvent.change(inputPassword, { target: { value: PASSWORD_INCORRECT } });
+    userEvent.type(inputEMail, EMAIL_CORRECT);
+    userEvent.type(inputPassword, PASSWORD_INCORRECT);
     expect(button).toBeDisabled();
   });
-  test('Verificar se o botão de entrar é habilitado se preencher os campos de forma correta', async () => {
+  test('Verificar se o botão de entrar é habilitado se preencher os campos de forma correta', () => {
     renderWithRouter(<App />)
     const inputEMail = screen.getByPlaceholderText(/email/i);
     const inputPassword = screen.getByPlaceholderText(/senha/i);
     const button = screen.getByText(/entrar/i);
-    await userEvent.type(inputEMail, EMAIL_CORRECT);
-    await userEvent.type(inputPassword, PASSWORD_CORRECT);
+    userEvent.type(inputEMail, EMAIL_CORRECT);
+    userEvent.type(inputPassword, PASSWORD_CORRECT);
 
     expect(button).toBeEnabled();
   });
