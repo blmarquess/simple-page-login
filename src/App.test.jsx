@@ -1,17 +1,8 @@
-import { screen, waitFor } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { screen, act, fireEvent } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import renderWithRouter from './testes/utils/renderByPath';
-import userEvent from '@testing-library/user-event';
 import { userCorrect, userEmailIncorrect, userIncorrect, userPasswordIncorrect } from './testes/utils/mocks/loginMocks';
-
-
-// const EMAIL_CORRECT = 'user@mail.com';
-// const PASSWORD_CORRECT = '123456asdf';
-
-// const EMAIL_INCORRECT = 'a@com';
-// const PASSWORD_INCORRECT = '1234567';
 
 describe('Testes dos elementos', () => {
   const setup = () => { renderWithRouter(<App />) };
@@ -46,11 +37,10 @@ describe('Testes de validação de regras de login e router', () => {
 
     await act(async () => {
       for (const user of userIncorrect) {
-        userEvent.type(inputEMail, user.email);
-        userEvent.type(inputPassword, user.password);
+        fireEvent.change(inputEMail, { target: { value: user.email } });
+        fireEvent.change(inputPassword, { target: { value: user.password } });
         const button = await screen.findByRole('button', { name: /entrar/i });
         expect(button).toBeDisabled();
-        renderWithRouter(<App />);
       };
     });
   });
@@ -60,26 +50,23 @@ describe('Testes de validação de regras de login e router', () => {
 
     await act(async () => {
       for (const user of userEmailIncorrect) {
-        userEvent.type(inputEMail, user.email);
-        userEvent.type(inputPassword, user.password);
+        fireEvent.change(inputEMail, { target: { value: user.email } });
+        fireEvent.change(inputPassword, { target: { value: user.password } });
         const button = await screen.findByRole('button', { name: /entrar/i });
         expect(button).toBeDisabled();
-        renderWithRouter(<App />);
       };
     });
   });
   test('Verificar se o botão de entrar continua desabilitado se preencher o campo password de forma errada', async () => {
-    // renderWithRouter(<App />);
     const inputEMail = await screen.findByPlaceholderText(/Email/i);
     const inputPassword = await screen.findByPlaceholderText(/senha/i);
 
     await act(async () => {
       for (const user of userPasswordIncorrect) {
-        userEvent.type(inputEMail, user.email);
-        userEvent.type(inputPassword, user.password);
+        fireEvent.change(inputEMail, { target: { value: user.email } });
+        fireEvent.change(inputPassword, { target: { value: user.password } });
         const button = await screen.findByRole('button', { name: /entrar/i });
         expect(button).toBeDisabled();
-        renderWithRouter(<App />);
       };
     });
   });
@@ -88,10 +75,10 @@ describe('Testes de validação de regras de login e router', () => {
     const inputPassword = await screen.findByPlaceholderText(/senha/i);
     await act(async () => {
       for (const user of userCorrect) {
-        userEvent.type(inputEMail, user.email);
-        userEvent.type(inputPassword, user.password);
-        console.log(inputEMail);
-        expect(screen.getByRole('button', { name: /entrar/i })).toBeEnabled();
+        fireEvent.change(inputEMail, { target: { value: user.email } });
+        fireEvent.change(inputPassword, { target: { value: user.password } });
+        const button = await screen.findByRole('button', { name: /entrar/i });
+        expect(button).toBeEnabled();
       };
     });
   });

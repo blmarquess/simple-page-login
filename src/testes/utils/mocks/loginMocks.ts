@@ -47,7 +47,7 @@ export const userCorrect = [{
   email: "smaberleyk@posterous.com",
   password: "KT1BMAJ5c8uuHTSpB8bteNEiRszj8QEq64WQ"
 }, {
-  email: "hwarinl@list-manage.com",
+  email: "hwarinl@listmanage.com",
   password: "KT1S6r56JbT2PKCGhtTw9u2Ze48nHEaSrsdc"
 }, {
   email: "rmarkwellp@comsenz.com",
@@ -171,7 +171,7 @@ export const userEmailIncorrect = [{
   email: "mtowe2@wcom",
   password: "KT1WN2hXkrajkzxTStUi67Q7oV5zN8B9krjQ"
 }, {
-  email: "creddan4@prnewswire.com",
+  email: "creddan4@prnewswire.2com",
   password: "KT1RJKwmbFyhgZTHM22oSWW5b5U4cg7ACcso"
 },{
   email: "wbrock6@",
@@ -189,7 +189,7 @@ export const userEmailIncorrect = [{
   email: "@cisco.com",
   password: "KT1CSueZMFopNByqXhV1zveu5Wa2iGPmtTAx"
 }, {
-  email: "kropars@theglobeandmail.com",
+  email: "kropars@theglobeandmail.om",
   password: "KT1QtrZ7mrs8qpfVMS3boU3entvkEeS3cij9"
 }, {
   email: "kgatchele@constantcontact",
