@@ -38,8 +38,10 @@ export default function Login() {
             style={{ display: "block" }}
             to={`/logged`}
             key="42"
-          >
+      >
+
         <button
+          type="button"
           onClick={() => console.log(formState.user)}
           disabled={!isValidForm()}
         >
